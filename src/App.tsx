@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
+import { InfoModal } from './components/modals/InfoModal'
 import { StatsModal } from './components/modals/StatsModal'
 import {
   GAME_TITLE,
@@ -168,6 +169,10 @@ function App() {
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
+      />
+      <InfoModal
+        isOpen={isInfoModalOpen}
+        handleClose={() => setIsInfoModalOpen(false)}
       />
       <StatsModal
         isOpen={isStatsModalOpen}
