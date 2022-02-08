@@ -14,7 +14,7 @@ type Props = {
 export const Key = ({
   children,
   status,
-  width = 40,
+  width = 28,
   value,
   onClick,
 }: Props) => {
@@ -38,7 +38,7 @@ export const Key = ({
 
   return (
     <button
-      style={{ width: `${width}px`, height: '58px' }}
+      style={{ width: `${width}px`, height: '30px' }}
       className={classes}
       onClick={handleClick}
     >
