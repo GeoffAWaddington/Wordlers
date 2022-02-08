@@ -8,7 +8,7 @@ export const WORD_NOT_FOUND_MESSAGE = 'Word not found'
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
   `The word was ${solution}`
 export const ENTER_TEXT = 'Enter'
-export const DELETE_TEXT = 'Delete'
+export const DELETE_TEXT = '<'
 export const STATISTICS_TITLE = 'Statistics'
 export const GUESS_DISTRIBUTION_TEXT = 'Guess Distribution'
 export const NEW_WORD_TEXT = 'New word in'
