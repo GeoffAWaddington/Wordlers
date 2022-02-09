@@ -31,9 +31,13 @@ export const Key = ({
     }
   )
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick(value)
-    event.currentTarget.blur()
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => 
+  {
+    if(status !== 'absent')
+    {
+      onClick(value)
+      event.currentTarget.blur()
+    }
   }
 
   return (
