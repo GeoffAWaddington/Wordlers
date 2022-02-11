@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import classnames from 'classnames'
 import { KeyValue } from '../../lib/keyboard'
 import { CharStatus } from '../../lib/statuses'
-import { motion, useReducedMotion } from "framer-motion";
+// import { motion, useReducedMotion } from "framer-motion";
 
 type Props = {
   children?: ReactNode
@@ -42,13 +42,12 @@ export const Key = ({
   }
 
   return (
-    <motion.button
+    <button
       style={{ width: `${width}px`, height: '48px' }}
       className={classes}
       onClick={handleClick}
-      drag
     >
       {children || value}
-    </motion.button>
+    </button>
   )
 }
