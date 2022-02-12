@@ -13,7 +13,6 @@ import {
   GAME_TITLE,
   WIN_MESSAGES,
   GAME_COPIED_MESSAGE,
-  ABOUT_GAME_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   CORRECT_WORD_MESSAGE,
@@ -154,17 +153,17 @@ function App() {
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
-        <h1 className="text-lg grow dark:text-white">{GAME_TITLE}</h1>
+        <h1 className="text-lg ml-8 text-center grow dark:text-white">{GAME_TITLE}</h1>
         <SunIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
         />
         <InformationCircleIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
         />
         <ChartBarIcon
-          className="h-6 w-6 cursor-pointer dark:stroke-white"
+          className="h-6 w-6 ml-2 mr-2 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
