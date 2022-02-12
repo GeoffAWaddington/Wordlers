@@ -4,10 +4,11 @@ import classnames from 'classnames'
 type Props = {
   value?: string
   status?: CharStatus
-  onDelete?: () => void
+  onDeleteLetter?: (index: number) => void
+  index?: number
 }
 
-export const Cell = ({ value, status, onDelete }: Props) => {
+export const Cell = ({ value, status, onDeleteLetter, index }: Props) => {
   const classes = classnames(
     'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-black text-xl rounded dark:text-white',
     {
@@ -24,8 +25,8 @@ export const Cell = ({ value, status, onDelete }: Props) => {
   )
 
   const onClick = () => {
-    if(onDelete !== undefined)
-      onDelete();
+    if(onDeleteLetter !== undefined && index !== undefined)
+      onDeleteLetter(index);
   }
 
   return <button 

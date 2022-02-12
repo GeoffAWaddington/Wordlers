@@ -5,10 +5,10 @@ import { EmptyRow } from './EmptyRow'
 type Props = {
   guesses: string[]
   currentGuess: string
-  onDelete: () => void
+  onDeleteLetter: (index: number) => void
 }
 
-export const Grid = ({ guesses, currentGuess, onDelete }: Props) => {
+export const Grid = ({ guesses, currentGuess, onDeleteLetter }: Props) => {
   const empties =
     guesses.length < 5 ? Array.from(Array(5 - guesses.length)) : []
 
@@ -17,7 +17,7 @@ export const Grid = ({ guesses, currentGuess, onDelete }: Props) => {
       {guesses.map((guess, i) => (
         <CompletedRow key={i} guess={guess} />
       ))}
-      {guesses.length < 6 && <CurrentRow guess={currentGuess} onDelete={onDelete} />}
+      {guesses.length < 6 && <CurrentRow guess={currentGuess} onDeleteLetter={onDeleteLetter} />}
       {empties.map((_, i) => (
         <EmptyRow key={i} />
       ))}

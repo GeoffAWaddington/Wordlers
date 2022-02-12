@@ -101,13 +101,18 @@ function App() {
   }, [isGameWon, isGameLost])
 
   const onChar = (value: string) => {
-    if (currentGuess.length < 5 && guesses.length < 6 && !isGameWon) {
-      setCurrentGuess(`${currentGuess}${value}`)
+    if (guesses.length < 6 && !isGameWon) {
+      let index = currentGuess.indexOf(' ')
+
+      if(index > -1)
+        setCurrentGuess(currentGuess.substring(0, index) + value + currentGuess.substring(index + 1))
+      else if(currentGuess.length < 5)
+        setCurrentGuess(`${currentGuess}${value}`)
     }
   }
 
-  const onDelete = () => {
-    setCurrentGuess(currentGuess.slice(0, -1))
+  const onDeleteLetter = (index: number) => {
+    setCurrentGuess(currentGuess.substring(0, index) + ' ' + currentGuess.substring(index + 1))
   }
 
   const onEnter = () => {
@@ -166,11 +171,10 @@ function App() {
       <Grid 
         guesses={guesses} 
         currentGuess={currentGuess} 
-        onDelete={onDelete}
+        onDeleteLetter={onDeleteLetter}
       />
       <Keyboard
         onChar={onChar}
-        onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
       />

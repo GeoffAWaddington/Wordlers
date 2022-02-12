@@ -6,19 +6,16 @@ import { ENTER_TEXT, DELETE_TEXT } from '../../constants/strings'
 
 type Props = {
   onChar: (value: string) => void
-  onDelete: () => void
   onEnter: () => void
   guesses: string[]
 }
 
-export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
+export const Keyboard = ({ onChar, onEnter, guesses }: Props) => {
   const charStatuses = getStatuses(guesses)
 
   const onClick = (value: KeyValue) => {
     if (value === 'ENTER') {
       onEnter()
-    } else if (value === 'DELETE') {
-      onDelete()
     } else {
       onChar(value)
     }
@@ -28,8 +25,6 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
     const listener = (e: KeyboardEvent) => {
       if (e.code === 'Enter') {
         onEnter()
-      } else if (e.code === 'Backspace') {
-        onDelete()
       } else {
         const key = e.key.toUpperCase()
         if (key.length === 1 && key >= 'A' && key <= 'Z') {
@@ -41,7 +36,7 @@ export const Keyboard = ({ onChar, onDelete, onEnter, guesses }: Props) => {
     return () => {
       window.removeEventListener('keyup', listener)
     }
-  }, [onEnter, onDelete, onChar])
+  }, [onEnter, onChar])
 
   return (
     <div>
