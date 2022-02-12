@@ -4,9 +4,10 @@ import classnames from 'classnames'
 type Props = {
   value?: string
   status?: CharStatus
+  onDelete?: () => void
 }
 
-export const Cell = ({ value, status }: Props) => {
+export const Cell = ({ value, status, onDelete }: Props) => {
   const classes = classnames(
     'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-black text-xl rounded dark:text-white',
     {
@@ -22,5 +23,13 @@ export const Cell = ({ value, status }: Props) => {
     }
   )
 
-  return <div className={classes}>{value}</div>
+  const onClick = () => {
+    if(onDelete !== undefined)
+      onDelete();
+  }
+
+  return <button 
+    className={classes}
+    onClick={onClick}
+  >{value}</button>
 }
