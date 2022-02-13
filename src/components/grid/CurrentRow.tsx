@@ -1,4 +1,5 @@
 import { Cell } from './Cell'
+import { motion, useReducedMotion } from "framer-motion";
 
 type Props = {
   guess: string
@@ -10,15 +11,22 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
   const emptyCells = Array.from(Array(5 - splitGuess.length))
 
   return (
-    <div className="flex justify-center mb-1">
+    <li className="flex justify-center mb-1">
 
-      {splitGuess.map((letter, i) => (letter !== ' ' ? <Cell onDeleteLetter={onDeleteLetter} index={i} key={i} value={letter} /> : <Cell key={i} /> 
+
+
+      {splitGuess.map((letter, i) => (letter !== ' ' ? 
+      <motion.div drag="x"> 
+      <Cell onDeleteLetter={onDeleteLetter} index={i} key={i} value={letter} /> 
+      </motion.div> 
+      
+      : <Cell key={i} /> 
       ))}
 
       {emptyCells.map((_, i) => (
         <Cell key={i} />
       ))}
 
-    </div>
+    </li>
   )
 }

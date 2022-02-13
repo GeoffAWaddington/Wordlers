@@ -1,5 +1,6 @@
 import { CharStatus } from '../../lib/statuses'
 import classnames from 'classnames'
+import { motion, useReducedMotion } from "framer-motion";
 
 type Props = {
   value?: string
@@ -29,8 +30,8 @@ export const Cell = ({ value, status, onDeleteLetter, index }: Props) => {
       onDeleteLetter(index);
   }
 
-  return <button 
+  return <motion.button 
     className={classes}
-    onClick={onClick}
-  >{value}</button>
+    onTap={onClick}
+  >{value}</motion.button>
 }
