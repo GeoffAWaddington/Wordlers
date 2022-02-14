@@ -3,10 +3,13 @@ import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
 export const shareStatus = (guesses: string[], lost: boolean) => {
-  navigator.clipboard.writeText(
-    `${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` +
-      generateEmojiGrid(guesses)
-  )
+  if(! navigator.canShare){
+    navigator.clipboard.writeText(`${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` + generateEmojiGrid(guesses))
+  }
+  else
+    navigator.share({
+        title: `${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` + generateEmojiGrid(guesses)
+    })
 }
 
 export const generateEmojiGrid = (guesses: string[]) => {
