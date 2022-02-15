@@ -26,14 +26,14 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         change to show how close the guess is to the word of the day.
       </p>
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="E" status="correct" />
-        <Cell value="A" />
+        <Cell value="W" status="correct" />
+        <Cell value="O" />
         <Cell value="R" />
-        <Cell value="T" />
-        <Cell value="H" />
+        <Cell value="L" />
+        <Cell value="D" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter E is in the correct spot.
+        The letter W is in the correct spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
