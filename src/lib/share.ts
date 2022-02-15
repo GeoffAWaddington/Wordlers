@@ -2,9 +2,10 @@ import { getGuessStatuses } from './statuses'
 import { solutionIndex } from './words'
 import { GAME_TITLE } from '../constants/strings'
 
-export const shareStatus = (guesses: string[], lost: boolean) => {
+export const shareStatus = (guesses: string[], lost: boolean, handleShare: any ) => {
   if(! navigator.canShare){
     navigator.clipboard.writeText(`${GAME_TITLE} ${solutionIndex} ${lost ? 'X' : guesses.length}/6\n\n` + generateEmojiGrid(guesses))
+    handleShare();
   }
   else
     navigator.share({
