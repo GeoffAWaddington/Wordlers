@@ -2,6 +2,7 @@ import {
   InformationCircleIcon,
   ChartBarIcon,
   SunIcon,
+  BookOpenIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -35,11 +36,12 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
+  const [isEasyMode, setIsEasyMode] = useState(true)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -73,6 +75,9 @@ function App() {
     }
   }, [isDarkMode])
 
+  const handleIsEasykMode = (isEasy: boolean) => {
+    setIsEasyMode(isEasy)
+  }
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
@@ -154,6 +159,10 @@ function App() {
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
         <h1 className="text-xl ml-2 grow dark:text-white">{GAME_TITLE}</h1>
+        <BookOpenIcon
+          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
+          onClick={() => handleIsEasykMode(!isEasyMode)}
+        />
         <SunIcon
           className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
@@ -176,6 +185,7 @@ function App() {
         onChar={onChar}
         onEnter={onEnter}
         guesses={guesses}
+        isEasyMode={isEasyMode}
       />
       <InfoModal
         isOpen={isInfoModalOpen}

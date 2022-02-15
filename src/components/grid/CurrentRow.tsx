@@ -13,22 +13,6 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
   const splitGuess = guess.split('')
   const emptyCells = Array.from(Array(5 - splitGuess.length))
 
-/*
-  const initialColors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#7777FF"];
-  const widths = {
-    "#FF008C": 60,
-    "#D309E1": 60,
-    "#9C1AFF": 60,
-    "#7700FF": 60,
-    "#7777FF": 60
-  };
-
-  const [colors, setColors] = useState(initialColors);
-
-*/
-
-
-
   // We need to collect an array of height and position data for all of this component's
   // `Item` children, so we can later us that in calculations to decide when a dragging
   // `Item` should swap places with its siblings.
@@ -43,16 +27,13 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
     //if (targetIndex !== i) setColors(move(colors, i, targetIndex));
   };
 
-
-
-
   return (
     <li className="flex justify-center mb-1">
 
 
 
       {splitGuess.map((letter, i) => (letter !== ' ' ? 
-      <motion.div drag="x"> 
+      <motion.div> 
       <Cell 
         onDeleteLetter={onDeleteLetter} 
         index={i} 
