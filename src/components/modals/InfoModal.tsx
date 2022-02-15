@@ -13,7 +13,7 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         Tap the keyboard to add a letter
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        If you make a mistake, tap the letter to remove it
+        Tap the letter to remove it
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         When you have all 5 letters, press Enter to try your guess
@@ -23,39 +23,39 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         You have 6 tries. After each guess, the color of the tiles will
-        change to show how close your guess was to the word.
+        change to show how close the guess is to the word of the day.
       </p>
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="W" status="correct" />
-        <Cell value="E" />
+        <Cell value="E" status="correct" />
         <Cell value="A" />
         <Cell value="R" />
-        <Cell value="Y" />
+        <Cell value="T" />
+        <Cell value="H" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter W is in the correct spot.
+        The letter E is in the correct spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="P" />
-        <Cell value="I" />
+        <Cell value="E" />
+        <Cell value="Q"/>
+        <Cell value="U" />
+        <Cell value="A" />
         <Cell value="L" status="present" />
-        <Cell value="O" />
-        <Cell value="T" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         The letter L is in the word but in the wrong spot(s).
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="V" />
-        <Cell value="A" />
-        <Cell value="G" />
-        <Cell value="U" status="absent" />
+        <Cell value="U" />
+        <Cell value="N" />
+        <Cell value="I" status="absent" />
+        <Cell value="T" />
         <Cell value="E" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter U is not in the word.
+        The letter I is not in the word.
       </p>
     </BaseModal>
   )

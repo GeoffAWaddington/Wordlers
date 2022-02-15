@@ -1,5 +1,8 @@
+import { useEffect, useState, useRef } from "react";
 import { Cell } from './Cell'
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { findIndex, Position } from "./find-index";
+import move from "array-move";
 
 type Props = {
   guess: string
@@ -10,6 +13,39 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
   const splitGuess = guess.split('')
   const emptyCells = Array.from(Array(5 - splitGuess.length))
 
+/*
+  const initialColors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#7777FF"];
+  const widths = {
+    "#FF008C": 60,
+    "#D309E1": 60,
+    "#9C1AFF": 60,
+    "#7700FF": 60,
+    "#7777FF": 60
+  };
+
+  const [colors, setColors] = useState(initialColors);
+
+*/
+
+
+
+  // We need to collect an array of height and position data for all of this component's
+  // `Item` children, so we can later us that in calculations to decide when a dragging
+  // `Item` should swap places with its siblings.
+  const positions = useRef<Position[]>([]).current;
+  const setPosition = (i: number, offset: Position) => (positions[i] = offset);
+
+  // Find the ideal index for a dragging item based on its position in the array, and its
+  // current drag offset. If it's different to its current index, we swap this item with that
+  // sibling.
+  const moveItem = (i: number, dragOffset: number) => {
+    const targetIndex = findIndex(i, dragOffset, positions);
+    //if (targetIndex !== i) setColors(move(colors, i, targetIndex));
+  };
+
+
+
+
   return (
     <li className="flex justify-center mb-1">
 
@@ -17,7 +53,15 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
 
       {splitGuess.map((letter, i) => (letter !== ' ' ? 
       <motion.div drag="x"> 
-      <Cell onDeleteLetter={onDeleteLetter} index={i} key={i} value={letter} /> 
+      <Cell 
+        onDeleteLetter={onDeleteLetter} 
+        index={i} 
+        key={i} 
+        value={letter}
+        i={i}
+        setPosition={setPosition}
+        moveItem={moveItem}
+       /> 
       </motion.div> 
       
       : <Cell key={i} /> 

@@ -1,15 +1,41 @@
-import { CharStatus } from '../../lib/statuses'
-import classnames from 'classnames'
-import { motion, useReducedMotion } from "framer-motion";
+import { CharStatus } from '../../lib/statuses';
+import classnames from 'classnames';
+import * as React from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue } from "framer-motion";
+import move from "array-move";
 
 type Props = {
   value?: string
   status?: CharStatus
   onDeleteLetter?: (index: number) => void
   index?: number
+  setPosition?: any
+  moveItem?: any
+  i?: number
 }
 
-export const Cell = ({ value, status, onDeleteLetter, index }: Props) => {
+export const Cell = ({ value, status, onDeleteLetter, index, setPosition, moveItem, i  }: Props) => {
+  const [isDragging, setDragging] = useState(false);
+
+   // We'll use a `ref` to access the DOM element that the `motion.li` produces.
+  // This will allow us to measure its height and position, which will be useful to
+  // decide when a dragging element should switch places with its siblings.
+  const ref = useRef(null);
+
+  // By manually creating a reference to `dragOriginY` we can manipulate this value
+  // if the user is dragging this DOM element while the drag gesture is active to
+  // compensate for any movement as the items are re-positioned.
+  const dragOriginX = useMotionValue(0);
+/*
+  // Update the measured position of the item so we can calculate when we should rearrange.
+  useEffect(() => {
+    setPosition(i, {
+      width: ref.current.offsetWidth,
+      left: ref.current.offsetLeft
+    });
+  });
+*/
   const classes = classnames(
     'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-black text-xl rounded dark:text-white',
     {
@@ -25,13 +51,28 @@ export const Cell = ({ value, status, onDeleteLetter, index }: Props) => {
     }
   )
 
+// Spring configs
+const onTop = { zIndex: 1 };
+const flat = {
+  zIndex: 0,
+  transition: { delay: 0.3 }
+};
+
   const onClick = () => {
     if(onDeleteLetter !== undefined && index !== undefined)
       onDeleteLetter(index);
   }
 
-  return <motion.button 
+  return <motion.li 
     className={classes}
     onTap={onClick}
-  >{value}</motion.button>
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 1.12 }}
+    animate={isDragging ? onTop : flat}
+    //dragOriginX={dragOriginX}
+    dragConstraints={{ left: 0, right: 0 }}
+    dragElastic={1}
+    onDragStart={() => setDragging(true)}
+    onDragEnd={() => setDragging(false)}
+  >{value}</motion.li>
 }
