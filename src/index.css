@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.cell-animation {
-  animation: revealCharCell linear;
-  animation-duration: 0.15s;
-}
-
 @keyframes revealCharCell {
   0% {
     transform: scale(1);

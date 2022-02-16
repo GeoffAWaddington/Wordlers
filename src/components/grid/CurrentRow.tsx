@@ -24,13 +24,12 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
   // sibling.
   const moveItem = (i: number, dragOffset: number) => {
     const targetIndex = findIndex(i, dragOffset, positions);
-    //if (targetIndex !== i) setColors(move(colors, i, targetIndex));
+    if (targetIndex !== i) 
+      move(positions, i, targetIndex);
   };
 
   return (
-    <li className="flex justify-center mb-1">
-
-
+    <ul className="flex justify-center mb-1">
 
       {splitGuess.map((letter, i) => (letter !== ' ' ? 
       <motion.div> 
@@ -52,6 +51,6 @@ export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
         <Cell key={i} />
       ))}
 
-    </li>
+    </ul>
   )
 }

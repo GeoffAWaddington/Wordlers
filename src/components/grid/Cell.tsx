@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import * as React from "react";
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { findIndex, Position } from "./find-index";
 import move from "array-move";
 
 type Props = {
@@ -10,13 +11,13 @@ type Props = {
   status?: CharStatus
   onDeleteLetter?: (index: number) => void
   index?: number
-  setPosition?: any
+  setPosition?: (i: number, offset: Position) => void
   moveItem?: any
   i?: number
 }
 
 export const Cell = ({ value, status, onDeleteLetter, index, setPosition, moveItem, i  }: Props) => {
-  const [isDragging, setDragging] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
    // We'll use a `ref` to access the DOM element that the `motion.li` produces.
   // This will allow us to measure its height and position, which will be useful to
@@ -64,6 +65,7 @@ const flat = {
   }
 
   return <motion.li 
+    ref={ref}
     className={classes}
     onTap={onClick}
     whileHover={{ scale: 1.03 }}
@@ -72,7 +74,22 @@ const flat = {
     //dragOriginX={dragOriginX}
     dragConstraints={{ left: 0, right: 0 }}
     dragElastic={1}
-    onDragStart={() => setDragging(true)}
-    onDragEnd={() => setDragging(false)}
+    onDragStart={() => setIsDragging(true)}
+    onDragEnd={() => setIsDragging(false)}
+    /*
+    positionTransition={({ delta }) => {
+      if (isDragging) {
+        // If we're dragging, we want to "undo" the items movement within the list
+        // by manipulating its dragOriginY. This will keep the item under the cursor,
+        // even though it's jumping around the DOM.
+        dragOriginX.set(dragOriginX.get() + delta.x);
+      }
+
+      // If `positionTransition` is a function and returns `false`, it's telling
+      // Motion not to animate from its old position into its new one. If we're
+      // dragging, we don't want any animation to occur.
+      return !isDragging;
+    }}
+    */
   >{value}</motion.li>
 }
