@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { Cell } from './Cell'
-import { motion } from "framer-motion";
-import { findIndex, Position } from "./find-index";
+import { motion, Reorder } from "framer-motion";
 import move from "array-move";
+
+const initialItems = ["N", "A", "U", "M", "H"];
 
 type Props = {
   guess: string
@@ -10,47 +11,54 @@ type Props = {
 }
 
 export const CurrentRow = ({ guess, onDeleteLetter }: Props) => {
+  const [items, setItems] = useState(initialItems);
   const splitGuess = guess.split('')
   const emptyCells = Array.from(Array(5 - splitGuess.length))
 
-  // We need to collect an array of height and position data for all of this component's
-  // `Item` children, so we can later us that in calculations to decide when a dragging
-  // `Item` should swap places with its siblings.
-  const positions = useRef<Position[]>([]).current;
-  const setPosition = (i: number, offset: Position) => (positions[i] = offset);
-
-  // Find the ideal index for a dragging item based on its position in the array, and its
-  // current drag offset. If it's different to its current index, we swap this item with that
-  // sibling.
-  const moveItem = (i: number, dragOffset: number) => {
-    const targetIndex = findIndex(i, dragOffset, positions);
-    if (targetIndex !== i) 
-      move(positions, i, targetIndex);
-  };
-
   return (
+
+
+
+
     <ul className="flex justify-center mb-1">
 
       {splitGuess.map((letter, i) => (letter !== ' ' ? 
+
+
       <motion.div> 
       <Cell 
         onDeleteLetter={onDeleteLetter} 
         index={i} 
         key={i} 
-        value={letter}
-        i={i}
-        setPosition={setPosition}
-        moveItem={moveItem}
+        letter={letter}
        /> 
       </motion.div> 
       
-      : <Cell key={i} /> 
+
+
+
+      : 
+
+      
+
+      <motion.div> 
+      <Cell key={i} /> 
+      </motion.div> 
+
+
+
       ))}
 
       {emptyCells.map((_, i) => (
+        <motion.div> 
         <Cell key={i} />
+        </motion.div> 
       ))}
 
+
+
     </ul>
+
+
   )
 }

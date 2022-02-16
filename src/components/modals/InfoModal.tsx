@@ -26,33 +26,33 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
         change to show how close the guess is to the word of the day.
       </p>
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="W" status="correct" />
-        <Cell value="O" />
-        <Cell value="R" />
-        <Cell value="L" />
-        <Cell value="D" />
+        <Cell letter="W" status="correct" />
+        <Cell letter="O" />
+        <Cell letter="R" />
+        <Cell letter="L" />
+        <Cell letter="D" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         The letter W is in the correct spot.
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="E" />
-        <Cell value="Q"/>
-        <Cell value="U" />
-        <Cell value="A" />
-        <Cell value="L" status="present" />
+        <Cell letter="E" />
+        <Cell letter="Q"/>
+        <Cell letter="U" />
+        <Cell letter="A" />
+        <Cell letter="L" status="present" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         The letter L is in the word but in the wrong spot(s).
       </p>
 
       <div className="flex justify-center mb-1 mt-4">
-        <Cell value="U" />
-        <Cell value="N" />
-        <Cell value="I" status="absent" />
-        <Cell value="T" />
-        <Cell value="E" />
+        <Cell letter="U" />
+        <Cell letter="N" />
+        <Cell letter="I" status="absent" />
+        <Cell letter="T" />
+        <Cell letter="E" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
         The letter I is not in the word.

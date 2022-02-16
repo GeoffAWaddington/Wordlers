@@ -41,7 +41,7 @@ function App() {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
-  const [isEasyMode, setIsEasyMode] = useState(true)
+  const [isEasyMode, setIsEasyMode] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -154,15 +154,11 @@ function App() {
       }
     }
   }
-
+  
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
         <h1 className="text-xl ml-2 grow dark:text-white">{GAME_TITLE}</h1>
-        <BookOpenIcon
-          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
-          onClick={() => handleIsEasykMode(!isEasyMode)}
-        />
         <SunIcon
           className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
