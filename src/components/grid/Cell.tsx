@@ -20,7 +20,7 @@ export const Cell = ({ letter, status, onDeleteLetter, index}: Props) => {
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
       'border-black dark:border-slate-100': letter && !status,
-      'bg-slate-200 dark:bg-slate-400 text-black border-slate-400 dark:border-slate-700':
+      'bg-slate-300 dark:bg-slate-400 text-slate-500 dark:text-slate-700 border-slate-400 dark:border-slate-700':
         status === 'absent',
       'bg-green-500 text-white border-green-500': status === 'correct',
       'bg-yellow-300 dark:bg-yellow-350 text-black dark:text-black border-yellow-300 dark:border-yellow-350':

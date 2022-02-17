@@ -49,13 +49,13 @@ export const InfoModal = ({ isOpen, handleClose }: Props) => {
 
       <div className="flex justify-center mb-1 mt-4">
         <Cell letter="U" />
-        <Cell letter="N" />
-        <Cell letter="I" status="absent" />
-        <Cell letter="T" />
+        <Cell letter="N"/>
+        <Cell letter="I" />
+        <Cell letter="T"  status="absent" />
         <Cell letter="E" />
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        The letter I is not in the word.
+        The letter T is not in the word.
       </p>
     </BaseModal>
   )
