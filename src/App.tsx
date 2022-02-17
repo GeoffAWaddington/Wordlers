@@ -2,7 +2,6 @@ import {
   InformationCircleIcon,
   ChartBarIcon,
   SunIcon,
-  BookOpenIcon,
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
@@ -36,7 +35,7 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(true)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') == 'true' ? true : false) : true)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
@@ -78,6 +77,7 @@ function App() {
   const handleIsEasykMode = (isEasy: boolean) => {
     setIsEasyMode(isEasy)
   }
+
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
@@ -120,6 +120,7 @@ function App() {
   }
 
   const onEnter = () => {
+    localStorage.setItem('showInfo', 'false')
     if (isGameWon || isGameLost) {
       return
     }
