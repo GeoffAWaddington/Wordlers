@@ -1,13 +1,15 @@
 import {
   InformationCircleIcon,
   ChartBarIcon,
-  SunIcon,
+  LightBulbIcon,
+  LinkIcon
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
 import { InfoModal } from './components/modals/InfoModal'
+import { LinksAndSettingsModal } from './components/modals/LinksAndSettingsModal'
 import { StatsModal } from './components/modals/StatsModal'
 import {
   GAME_TITLE,
@@ -38,6 +40,7 @@ function App() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') == 'true' ? true : false) : true)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
+  const [isLinksAndSettingsModalOpen, setIsLinksAndSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [isEasyMode, setIsEasyMode] = useState(false)
@@ -74,9 +77,7 @@ function App() {
     }
   }, [isDarkMode])
 
-  const handleIsEasykMode = (isEasy: boolean) => {
-    setIsEasyMode(isEasy)
-  }
+ 
 
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
@@ -160,7 +161,11 @@ function App() {
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
         <h1 className="text-xl ml-2 grow dark:text-white">{GAME_TITLE}</h1>
-        <SunIcon
+        <LinkIcon
+          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
+          onClick={() => setIsLinksAndSettingsModalOpen(true)}
+        />        
+        <LightBulbIcon
           className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
           onClick={() => handleDarkMode(!isDarkMode)}
         />
@@ -184,10 +189,16 @@ function App() {
         guesses={guesses}
         isEasyMode={isEasyMode}
       />
+      <LinksAndSettingsModal
+        isOpen={isLinksAndSettingsModalOpen}
+        handleClose={() => setIsLinksAndSettingsModalOpen(false)}
+        handleIsEasyMode={() => setIsEasyMode(! isEasyMode)}
+        isEasyMode={isEasyMode}
+      />  
       <InfoModal
         isOpen={isInfoModalOpen}
         handleClose={() => setIsInfoModalOpen(false)}
-      />
+    />
       <StatsModal
         isOpen={isStatsModalOpen}
         handleClose={() => setIsStatsModalOpen(false)}
