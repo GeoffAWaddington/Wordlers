@@ -261,8 +261,6 @@ function App() {
       <LinksAndSettingsModal
         isOpen={isLinksAndSettingsModalOpen}
         handleClose={() => setIsLinksAndSettingsModalOpen(false)}
-        handleIsEasyMode={() => handleIsEasyMode(!isEasyMode)}
-        isEasyMode={isEasyMode}
       />  
       <InfoModal
         isOpen={isInfoModalOpen}
