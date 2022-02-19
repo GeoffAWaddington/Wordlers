@@ -1,7 +1,8 @@
 import {
   InformationCircleIcon,
-  ChartBarIcon,
-  LightBulbIcon,
+  TrendingUpIcon,
+  SunIcon,
+  MoonIcon,
   LinkIcon
 } from '@heroicons/react/outline'
 import { useState, useEffect } from 'react'
@@ -37,13 +38,17 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') == 'true' ? true : false) : true)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') === 'true' ? true : false) : true)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   const [isLinksAndSettingsModalOpen, setIsLinksAndSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
-  const [isEasyMode, setIsEasyMode] = useState(false)
+  const [isEasyMode, setIsEasyMode] = useState(
+    localStorage.getItem('isEasyMode') 
+      ? localStorage.getItem('isEasyMode') === 'false'
+      : true
+  )
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme')
       ? localStorage.getItem('theme') === 'dark'
@@ -59,7 +64,7 @@ function App() {
     }
     const gameWasWon = loaded.guesses.includes(solution)
     if (gameWasWon) {
-      setIsGameWon(true)
+      //setIsGameWon(true)
     }
     if (loaded.guesses.length === 6 && !gameWasWon) {
       setIsGameLost(true)
@@ -77,11 +82,14 @@ function App() {
     }
   }, [isDarkMode])
 
- 
-
   const handleDarkMode = (isDark: boolean) => {
     setIsDarkMode(isDark)
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }
+
+  const handleIsEasyMode = (isEasy: boolean) => {
+    setIsEasyMode(isEasy)
+    localStorage.setItem('isEasyMode', isEasyMode ? 'true' : 'false')
   }
 
   useEffect(() => {
@@ -156,27 +164,88 @@ function App() {
       }
     }
   }
-  
+
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div className="flex w-80 mx-auto items-center mb-8 mt-12">
-        <h1 className="text-xl ml-2 grow dark:text-white">{GAME_TITLE}</h1>
-        <LinkIcon
-          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
-          onClick={() => setIsLinksAndSettingsModalOpen(true)}
+        <h1 className="text-lg font-bold ml-2 mr-5 dark:text-white">{GAME_TITLE}</h1>
+
+      { isEasyMode == true ?
+        <svg className={isDarkMode ? "w-6 h-6 grow invert" : "w-6 h-6 grow invert0"}  onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 125 125"  ><g>
+          <path d="M28,58.2c-0.04-0.13-0.09-0.3-0.11-0.45c-0.24-2.05-0.47-4.31-0.67-6.26c-0.28-2.86-0.6-6.16-0.82-8.48 
+          c-0.15-1.57-0.65-3.06-1.38-4.18c-0.49-0.71-1.03-1.25-1.64-1.51c-0.49-0.19-1.08-0.22-1.7,0.02c-0.84,0.32-1.79,1.01-2.84,2.2 
+          c-0.93,1.06-1.66,2.48-2.26,3.98c-0.86,2.2-1.36,4.54-1.57,6.14c-0.02,0.11-0.02,0.19-0.06,0.28L9.12,83.02 
+          c-0.09,0.43-0.26,0.82-0.52,1.12c-1.96,2.52-3.19,4.69-3.55,6.44c-0.26,1.29,0,2.33,0.86,3.14l21.44,21.44 
+          c1.36,1.31,2.95,2.13,4.84,2.48c2.07,0.39,4.48,0.17,7.26-0.58c0.04,0,0.11-0.02,0.15-0.02c1.05-0.28,2.43-0.62,3.75-0.95 
+          c5.75-1.4,10.76-2.63,15.41-6.85l5.98-6.24c0.06-0.11,0.15-0.19,0.24-0.28c0.09-0.09,0.67-0.67,1.46-1.42 
+          c4.09-4,9.15-8.93,6.07-13.26l-2.39-2.39c-1.16,1.12-2.39,2.22-3.57,3.27c-1.08,0.95-2.09,1.83-3.01,2.76 
+          c-0.99,0.99-2.58,0.99-3.57,0c-0.99-0.99-0.99-2.58,0-3.57c0.93-0.93,2.07-1.94,3.25-2.99c4.05-3.57,8.7-7.66,6.2-11.24l-2.37-2.37 
+          c-0.13-0.13-0.24-0.28-0.34-0.43c-1.36,1.4-2.86,2.73-4.33,4.03c-1.08,0.95-2.09,1.83-3.01,2.76c-0.99,0.99-2.58,0.99-3.57,0 
+          c-0.99-0.99-0.99-2.58,0-3.57c0.93-0.93,2.07-1.94,3.25-2.99c4.05-3.57,8.7-7.66,6.2-11.24l-2.37-2.37 
+          c-0.17-0.17-0.3-0.34-0.41-0.54l-6.95,6.95c-0.99,0.99-2.58,0.99-3.57,0c-0.99-0.99-0.99-2.58,0-3.57L70.6,41.86 
+          c3.12-3.12,3.83-6.37,3.01-8.83c-0.3-0.9-0.8-1.7-1.42-2.32c-0.62-0.62-1.42-1.12-2.32-1.42c-2.43-0.8-5.66-0.06-8.87,3.14 
+          l-32.7,32.7c-0.99,0.99-2.58,0.99-3.57,0c-0.99-0.99-0.99-2.58,0-3.57l3.32-3.32L28,58.2L28,58.2z M40.73,0l1.84,19.94l-5.61,0.51 
+          L35.13,0.51L40.73,0L40.73,0z M66.95,8.97L53.97,24.59l-4.33-3.6L62.62,5.37L66.95,8.97L66.95,8.97z M16,11.84l15.43,12.82 
+          l-3.6,4.33L12.4,16.17L16,11.84L16,11.84z M65.93,53.68c0.19,0.11,0.37,0.24,0.54,0.41l2.48,2.48c0.13,0.13,0.26,0.3,0.37,0.45 
+          c2.78,3.81,2.35,7.21,0.45,10.31c0.34,0.13,0.67,0.32,0.93,0.58l2.48,2.48c0.13,0.13,0.26,0.3,0.37,0.45 
+          c2.99,4.11,2.24,7.71,0,10.98c0.11,0.06,0.19,0.15,0.3,0.26l2.48,2.48c0.13,0.13,0.26,0.3,0.37,0.45 
+          c5.75,7.86-1.1,14.53-6.61,19.91l-1.42,1.42l-6.14,6.44l-0.19,0.19c-5.62,5.1-11.19,6.46-17.63,8.03 
+          c-1.08,0.26-2.17,0.54-3.68,0.93c-0.04,0-0.06,0.02-0.11,0.02c-3.49,0.95-6.65,1.18-9.49,0.67c-2.88-0.52-5.38-1.81-7.47-3.85 
+          L2.51,97.34c-2.17-2.09-2.91-4.67-2.3-7.73c0.47-2.45,1.89-5.17,4.13-8.09l5.73-32.42v-0.13c0.26-1.85,0.84-4.59,1.85-7.23 
+          c0.77-1.98,1.81-3.92,3.16-5.49c1.64-1.85,3.25-2.99,4.84-3.6c1.96-0.75,3.83-0.65,5.49,0.06c1.55,0.65,2.86,1.83,3.85,3.34 
+          c1.21,1.81,2,4.11,2.22,6.52c0.17,1.98,0.52,5.25,0.84,8.46l0.26,2.67L57.4,28.88c4.76-4.76,9.92-5.71,14.04-4.35 
+          c1.66,0.54,3.12,1.44,4.33,2.65c1.21,1.21,2.11,2.67,2.65,4.33c1.36,4.11,0.43,9.34-4.24,14.02l-8.22,8.22L65.93,53.68L65.93,53.68 z"/>
+        </g></svg>      
+
+        :
+
+        <svg className={isDarkMode ? "w-6 h-6 grow invert" : "w-6 h-6 grow invert0"}  onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 500 500"><g>
+          <path id="XMLID_9_" d="M247.069,163.687c24.872,0,45.02-20.146,45.02-45.021c0-24.858-20.147-45.014-45.02-45.014
+            c-24.874,0-45.007,20.156-45.007,45.014C202.063,143.54,222.195,163.687,247.069,163.687z"/>
+          <path id="XMLID_10_" d="M462.838,17.042c-6.31,0-11.647,3.282-15.1,8.033v-6.082C447.738,8.5,439.221,0,428.734,0
+            c-10.484,0-19.002,8.5-19.002,18.994v28.1H84.404v-28.1C84.404,8.5,75.889,0,65.402,0C54.917,0,46.4,8.5,46.4,18.994v6.082
+            c-3.453-4.751-8.792-8.033-15.099-8.033c-10.485,0-19.002,8.5-19.002,18.994V82.92c0,10.493,8.517,18.994,19.002,18.994
+            c6.307,0,11.646-3.282,15.099-8.025v6.082c0,10.493,8.517,18.994,19.002,18.994c10.486,0,19.002-8.501,19.002-18.994v-28.1h12.002
+            c0.322,1.751,37.697,75.509,37.697,75.509c1,1.952,2.339,3.711,3.951,5.21l54.459,50.651v134.08l-44.166,42.424
+            c-4.388,4.202-6.855,10.01-6.855,16.084v76.008c0,12.316,9.984,22.301,22.293,22.301c12.309,0,22.293-9.985,22.293-22.301V405.33
+            l32.115-30.85h57.749l32.134,30.85v66.507c0,12.316,9.984,22.301,22.292,22.301c12.308,0,22.293-9.985,22.293-22.301v-76.008
+            c0-6.074-2.468-11.881-6.855-16.084l-44.149-42.409V203.225l54.426-50.643c1.612-1.491,2.951-3.251,3.951-5.202
+            c0,0,37.375-73.758,37.699-75.509h12v28.1c0,10.493,8.518,18.994,19.002,18.994c10.486,0,19.004-8.501,19.004-18.994v-6.09
+            c3.452,4.751,8.789,8.033,15.1,8.033c10.483,0,19-8.501,19-18.994V36.036C481.838,25.542,473.321,17.042,462.838,17.042z
+            M327.771,127.03l-48.699,45.32h-63.975l-48.732-45.32l-28.422-55.16h218.251L327.771,127.03z"/>
+        </g></svg>
+      }
+
+      { isDarkMode === true ?
+        <MoonIcon
+        className="h-6 w-6 mr-1 cursor-pointer dark:stroke-white"
+        onClick={() => handleDarkMode(!isDarkMode)}
+        />  
+
+        :
+        
+        <SunIcon
+        className="h-6 w-6 mr-1 cursor-pointer dark:stroke-white"
+        onClick={() => handleDarkMode(!isDarkMode)}
         />        
-        <LightBulbIcon
-          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
-          onClick={() => handleDarkMode(!isDarkMode)}
-        />
-        <InformationCircleIcon
-          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
-          onClick={() => setIsInfoModalOpen(true)}
-        />
-        <ChartBarIcon
-          className="h-6 w-6 ml-2 mr-2 cursor-pointer dark:stroke-white"
-          onClick={() => setIsStatsModalOpen(true)}
-        />
+      }
+
+      <InformationCircleIcon
+        className="h-6 w-6 mr-1 cursor-pointer dark:stroke-white"
+        onClick={() => setIsInfoModalOpen(true)}
+      />
+
+      <LinkIcon
+        className="h-6 w-6 mr-1 cursor-pointer dark:stroke-white"
+        onClick={() => setIsLinksAndSettingsModalOpen(true)}
+      />  
+
+      <TrendingUpIcon
+        className="h-6 w-6 mr-1 cursor-pointer dark:stroke-white"
+        onClick={() => setIsStatsModalOpen(true)}
+      />
+
+        
       </div>
       <Grid 
         guesses={guesses} 
@@ -192,7 +261,7 @@ function App() {
       <LinksAndSettingsModal
         isOpen={isLinksAndSettingsModalOpen}
         handleClose={() => setIsLinksAndSettingsModalOpen(false)}
-        handleIsEasyMode={() => setIsEasyMode(! isEasyMode)}
+        handleIsEasyMode={() => handleIsEasyMode(!isEasyMode)}
         isEasyMode={isEasyMode}
       />  
       <InfoModal

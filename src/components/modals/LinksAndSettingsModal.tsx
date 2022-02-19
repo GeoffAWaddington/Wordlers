@@ -20,12 +20,6 @@ export const LinksAndSettingsModal = ({ isOpen, handleClose, handleIsEasyMode, i
           >
           {buttonText}
           </button>
-      <p className="text-sm text-gray-500 dark:text-gray-300">
-        Link to website here
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300">
-        Link to donate here
-      </p>
     </BaseModal>
   )
 }
