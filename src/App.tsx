@@ -171,7 +171,7 @@ function App() {
  
       <button
       className={isEasyMode === true ?
-        "w-6 h-6 mt-1 ml-2 rounded bg-slate-100 text-black dark:bg-slate-800 dark:text-white" 
+        "w-6 h-6 mt-1 ml-2 rounded bg-slate-100 text-black dark:bg-black dark:text-white" 
         :
         "w-6 h-6 mt-1 ml-2 rounded bg-slate-200 text-black dark:bg-slate-400 dark:text-white" 
       }
