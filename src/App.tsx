@@ -40,6 +40,7 @@ function App() {
   const [isGameWon, setIsGameWon] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') === 'true' ? true : false) : true)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
+  const [isHardModeGuessFail, setIsHardModeGuessFail] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
   //const [isLinksAndSettingsModalOpen, setIsLinksAndSettingsModalOpen] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
@@ -129,7 +130,35 @@ function App() {
   }
 
   const onEnter = () => {
-    localStorage.setItem('showInfo', 'false')
+    localStorage.setItem('showInfo', 'false') // THe first time they press Enter stop showing 'How to Play' info at startup
+
+    if (!isEasyMode && currentGuess.length === 5 && guesses.length > 0) {
+      let isGuessFail = false
+
+      const lastGuessLetters = guesses[guesses.length - 1].split('')
+      const currentGuessLetters = currentGuess.split('')
+      const solutionLetters = solution.split('')
+
+      for (var i = 0; i < currentGuess.length; i++) {
+        if (lastGuessLetters[i] === solutionLetters[i] && currentGuessLetters[i] !== lastGuessLetters[i]) {
+          isGuessFail = true
+          break
+        }
+
+        if (solutionLetters.indexOf(lastGuessLetters[i]) !== -1 && currentGuess.indexOf(lastGuessLetters[i]) === -1) {
+          isGuessFail = true
+          break
+        }
+      }
+
+      if (isGuessFail) {
+        setIsHardModeGuessFail(true)
+        return setTimeout(() => {
+          setIsHardModeGuessFail(false)
+        }, ALERT_TIME_MS)
+      }
+    }
+
     if (isGameWon || isGameLost) {
       return
     }
@@ -255,12 +284,19 @@ function App() {
         }}
       />
 
-      <Alert message={NOT_ENOUGH_LETTERS_MESSAGE} isOpen={isNotEnoughLetters} />
+      <Alert
+        message={'Not a valid guess'}
+        isOpen={isHardModeGuessFail} />
+      <Alert
+        message={NOT_ENOUGH_LETTERS_MESSAGE}
+        isOpen={isNotEnoughLetters} />
       <Alert
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
       />
-      <Alert message={CORRECT_WORD_MESSAGE(solution)} isOpen={isGameLost} />
+      <Alert
+        message={CORRECT_WORD_MESSAGE(solution)}
+        isOpen={isGameLost} />
       <Alert
         message={successAlert}
         isOpen={successAlert !== ''}
