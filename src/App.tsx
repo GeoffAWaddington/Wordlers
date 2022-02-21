@@ -18,6 +18,7 @@ import {
   GAME_COPIED_MESSAGE,
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
+  NOT_A_VALID_GUESS_MESSAGE,
   CORRECT_WORD_MESSAGE,
   SVG_DATA_FINGER_SNAP,
   SVG_DATA_WEIGHTLIFTER_PART1,
@@ -288,7 +289,7 @@ function App() {
       />
 
       <Alert
-        message={'Not a valid guess'}
+        message={NOT_A_VALID_GUESS_MESSAGE}
         isOpen={isHardModeGuessFail} />
       <Alert
         message={NOT_ENOUGH_LETTERS_MESSAGE}
