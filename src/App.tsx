@@ -135,17 +135,15 @@ function App() {
     if (!isEasyMode && currentGuess.length === 5 && guesses.length > 0) {
       let isGuessFail = false
 
-      const lastGuessLetters = guesses[guesses.length - 1].split('')
-      const currentGuessLetters = currentGuess.split('')
-      const solutionLetters = solution.split('')
+      const lastGuess = guesses[guesses.length - 1]
 
       for (var i = 0; i < currentGuess.length; i++) {
-        if (lastGuessLetters[i] === solutionLetters[i] && currentGuessLetters[i] !== lastGuessLetters[i]) {
+        if (lastGuess[i] === solution[i] && currentGuess[i] !== lastGuess[i]) {
           isGuessFail = true
           break
         }
 
-        if (solutionLetters.indexOf(lastGuessLetters[i]) !== -1 && currentGuess.indexOf(lastGuessLetters[i]) === -1) {
+        if (solution.indexOf(lastGuess[i]) !== -1 && currentGuess.indexOf(lastGuess[i]) === -1) {
           isGuessFail = true
           break
         }
