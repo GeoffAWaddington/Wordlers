@@ -73,10 +73,16 @@ function App() {
     }
     const gameWasWon = loaded.guesses.includes(solution)
     if (gameWasWon) {
-      //setIsGameWon(true)
+      setIsGameWon(true)
+      setTimeout(() => {
+        setIsGameWon(false)
+      }, ALERT_TIME_MS)
     }
     if (loaded.guesses.length === 6 && !gameWasWon) {
       setIsGameLost(true)
+      setTimeout(() => {
+        setIsGameLost(false)
+      }, ALERT_TIME_MS)
     }
     return loaded.guesses
   })
