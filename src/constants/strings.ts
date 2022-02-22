@@ -8,7 +8,6 @@ export const NOT_A_VALID_GUESS_MESSAGE = 'Not a valid guess'
 export const CORRECT_WORD_MESSAGE = (solution: string) =>
   `The word was ${solution}`
 export const ENTER_TEXT = 'Enter'
-export const DELETE_TEXT = '<'
 export const STATISTICS_TITLE = 'Statistics'
 export const GUESS_DISTRIBUTION_TEXT = 'Guess Distribution'
 export const NEW_WORD_TEXT = 'New word in'

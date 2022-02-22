@@ -2,7 +2,7 @@ import { KeyValue } from '../../lib/keyboard'
 import { getStatuses } from '../../lib/statuses'
 import { Key } from './Key'
 import { useEffect } from 'react'
-import { ENTER_TEXT, DELETE_TEXT } from '../../constants/strings'
+import { ENTER_TEXT } from '../../constants/strings'
 
 type Props = {
   onChar: (value: string) => void
@@ -41,7 +41,7 @@ export const Keyboard = ({ onChar, onEnter, guesses, isEasyMode }: Props) => {
 
   return (
     <div>
-      <div className="flex justify-center mb-1">
+      <div className="flex justify-center mb-1 mt-9">
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} isEasyMode={isEasyMode} />
         <Key value="W" onClick={onClick} status={charStatuses['W']} isEasyMode={isEasyMode} />
         <Key value="E" onClick={onClick} status={charStatuses['E']} isEasyMode={isEasyMode} />
@@ -72,12 +72,12 @@ export const Keyboard = ({ onChar, onEnter, guesses, isEasyMode }: Props) => {
         <Key value="B" onClick={onClick} status={charStatuses['B']} isEasyMode={isEasyMode} />
         <Key value="N" onClick={onClick} status={charStatuses['N']} isEasyMode={isEasyMode} />
         <Key value="M" onClick={onClick} status={charStatuses['M']} isEasyMode={isEasyMode} />
-        <Key  width={65.4} 
-              value="ENTER" 
-              onClick={onClick}
-              isEasyMode={isEasyMode}      
-              >
-   
+        <Key width={65.4}
+          value="ENTER"
+          onClick={onClick}
+          isEasyMode={isEasyMode}
+        >
+
           {ENTER_TEXT}
         </Key>
 
