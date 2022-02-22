@@ -74,9 +74,15 @@ function App() {
     const gameWasWon = loaded.guesses.includes(solution)
     if (gameWasWon) {
       setIsGameWon(true)
+      setTimeout(() => {
+        setIsGameWon(false)
+      }, ALERT_TIME_MS)
     }
     if (loaded.guesses.length === 6 && !gameWasWon) {
       setIsGameLost(true)
+      setTimeout(() => {
+        setIsGameLost(false)
+      }, ALERT_TIME_MS)
     }
     return loaded.guesses
   })
@@ -202,7 +208,7 @@ function App() {
 
   return (
     <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mb-2 mt-12 mx-auto items-center">
+      <div className="flex w-80 mb-1 mx-auto items-center">
 
         {isEasyMode === true ?
           <svg className={isDarkMode ? "w-6 h-8 ml-3 mb-1 invert" : "w-6 h-8 ml-3 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
