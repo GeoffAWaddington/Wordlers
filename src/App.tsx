@@ -50,7 +50,7 @@ function App() {
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
   const [isHardModeGuessFail, setIsHardModeGuessFail] = useState(false)
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false)
-  //const [isLinksAndSettingsModalOpen, setIsLinksAndSettingsModalOpen] = useState(false)
+  const [isGameLoading, setIsGameLoading] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [isEasyMode, setIsEasyMode] = useState(
@@ -67,11 +67,15 @@ function App() {
   )
   const [successAlert, setSuccessAlert] = useState('')
   const [guesses, setGuesses] = useState<string[]>(() => {
+
     const loaded = loadGameStateFromLocalStorage()
     if (loaded?.solution !== solution) {
       return []
     }
     const gameWasWon = loaded.guesses.includes(solution)
+
+    setIsGameLoading(true)
+
     if (gameWasWon) {
       setIsGameWon(true)
     }
@@ -106,6 +110,11 @@ function App() {
   }, [guesses])
 
   useEffect(() => {
+    if (isGameLoading) {
+      setIsGameLoading(false)
+      return
+    }
+
     if (isGameWon) {
       setSuccessAlert(
         WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
