@@ -19,6 +19,8 @@ import {
   NOT_ENOUGH_LETTERS_MESSAGE,
   WORD_NOT_FOUND_MESSAGE,
   NOT_A_VALID_GUESS_MESSAGE,
+  EASY_MODE_MESSAGE,
+  HARD_MODE_MESSAGE,
   CORRECT_WORD_MESSAGE,
   SVG_DATA_FINGER_SNAP,
   SVG_DATA_WEIGHTLIFTER_PART1,
@@ -53,6 +55,7 @@ function App() {
   const [isGameLoading, setIsGameLoading] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
+  const [isEasyModeChanging, setIsEasyModeChanging] = useState(false)
   const [isEasyMode, setIsEasyMode] = useState(
     localStorage.getItem('isEasyMode')
       ? localStorage.getItem('isEasyMode') === 'false'
@@ -103,6 +106,11 @@ function App() {
   const handleIsEasyMode = (isEasy: boolean) => {
     setIsEasyMode(isEasy)
     localStorage.setItem('isEasyMode', isEasyMode ? 'true' : 'false')
+
+    setIsEasyModeChanging(true)
+    return setTimeout(() => {
+      setIsEasyModeChanging(false)
+    }, ALERT_TIME_MS)
   }
 
   useEffect(() => {
@@ -284,6 +292,10 @@ function App() {
       <Alert
         message={WORD_NOT_FOUND_MESSAGE}
         isOpen={isWordNotFoundAlertOpen}
+      />
+      <Alert
+        message={isEasyMode ? EASY_MODE_MESSAGE : HARD_MODE_MESSAGE}
+        isOpen={isEasyModeChanging}
       />
       <Alert
         message={CORRECT_WORD_MESSAGE(solution)}
