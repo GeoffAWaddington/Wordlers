@@ -41,7 +41,7 @@ export const Keyboard = ({ onChar, onEnter, guesses, isEasyMode }: Props) => {
 
   return (
     <div>
-      <div className="flex justify-center mb-1 mt-9">
+      <div className="flex justify-center mt-2">
         <Key value="Q" onClick={onClick} status={charStatuses['Q']} isEasyMode={isEasyMode} />
         <Key value="W" onClick={onClick} status={charStatuses['W']} isEasyMode={isEasyMode} />
         <Key value="E" onClick={onClick} status={charStatuses['E']} isEasyMode={isEasyMode} />

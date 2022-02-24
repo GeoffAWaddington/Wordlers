@@ -218,8 +218,8 @@ function App() {
   }
 
   return (
-    <div className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mb-2 mx-auto items-center">
+    <div className="py-3 max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div className="flex w-80 mx-auto items-center">
 
         {isEasyMode === true ?
           <svg className={isDarkMode ? "w-6 h-8 ml-3 mb-1 invert" : "w-6 h-8 ml-3 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -277,11 +277,6 @@ function App() {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
-      <Grid
-        guesses={guesses}
-        currentGuess={currentGuess}
-        onDeleteLetter={onDeleteLetter}
-      />
 
       <Alert
         message={NOT_A_VALID_GUESS_MESSAGE}
@@ -306,6 +301,11 @@ function App() {
         variant="success"
       />
 
+      <Grid
+        guesses={guesses}
+        currentGuess={currentGuess}
+        onDeleteLetter={onDeleteLetter}
+      />
       <Keyboard
         onChar={onChar}
         onEnter={onEnter}
