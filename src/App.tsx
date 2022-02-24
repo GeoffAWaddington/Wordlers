@@ -110,7 +110,7 @@ function App() {
     setIsEasyModeChanging(true)
     return setTimeout(() => {
       setIsEasyModeChanging(false)
-    }, ALERT_TIME_MS)
+    }, ALERT_TIME_MS / 2.5)
   }
 
   useEffect(() => {
