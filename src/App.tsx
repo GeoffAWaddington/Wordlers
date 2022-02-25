@@ -241,7 +241,7 @@ function App() {
 
         {isEasyMode === true ?
           <svg className={isDarkMode ? "w-6 h-8 ml-3 mb-1 invert" : "w-6 h-8 ml-3 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-            x="0px" y="0px" viewBox="0 0 108 108">
+            x="0px" y="0px" viewBox="0 0 103 103">
             <g>
               <path d={SVG_DATA_FINGER_SNAP} />
             </g>
@@ -280,7 +280,7 @@ function App() {
 
         <h1 className="text-lg font-bold grow ml-4 dark:text-white">{GAME_TITLE}</h1>
 
-        <svg className={isDarkMode ? "w-8 h-8 mr-2 invert" : "w-8 h-8 mr-2 invert0"} onClick={() => setIsLegalModalOpen(true)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+        <svg className={isDarkMode ? "w-8 h-8 mr-2 mb-1 invert" : "w-8 h-8 mr-2 mb-1 invert0"} onClick={() => setIsLegalModalOpen(true)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
           x="0px" y="0px" viewBox="0 0 1025 1025">
           <g>
             <path d={SVG_DATA_HANDSHAKE_PART1} />
