@@ -240,7 +240,7 @@ function App() {
       <div className="flex w-80 mx-auto items-center">
 
         {isEasyMode === true ?
-          <svg className={isDarkMode ? "w-6 h-8 ml-3 mb-1 invert" : "w-6 h-8 ml-3 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+          <svg className={isDarkMode ? "w-6 h-8 mb-1 invert" : "w-6 h-8 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
             x="0px" y="0px" viewBox="0 0 103 103">
             <g>
               <path d={SVG_DATA_FINGER_SNAP} />
@@ -249,7 +249,7 @@ function App() {
 
           :
 
-          <svg className={isDarkMode ? "w-6 h-8 ml-3 mt-1 invert" : "w-6 h-8 ml-3 mt-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+          <svg className={isDarkMode ? "w-6 h-8 mt-1 invert" : "w-6 h-8 mt-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
             x="0px" y="0px" viewBox="0 0 550 550"  >
             <g>
               <path id="XMLID_9_" d={SVG_DATA_WEIGHTLIFTER_PART1} />
@@ -261,26 +261,26 @@ function App() {
 
         {isDarkMode === true ?
           <MoonIcon
-            className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
+            className="h-7 w-7 ml-3 cursor-pointer dark:stroke-white"
             onClick={() => handleDarkMode(!isDarkMode)}
           />
 
           :
 
           <SunIcon
-            className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
+            className="h-7 w-7 ml-3 cursor-pointer dark:stroke-white"
             onClick={() => handleDarkMode(!isDarkMode)}
           />
         }
 
         <InformationCircleIcon
-          className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
+          className="h-7 w-7 ml-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsInfoModalOpen(true)}
         />
 
         <h1 className="text-lg font-bold grow ml-4 dark:text-white">{GAME_TITLE}</h1>
 
-        <svg className={isDarkMode ? "w-8 h-8 mr-2 mb-1 invert" : "w-8 h-8 mr-2 mb-1 invert0"} onClick={() => setIsLegalModalOpen(true)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+        <svg className={isDarkMode ? "w-8 h-8 mr-3 mb-1 invert" : "w-8 h-8 mr-3 mb-1 invert0"} onClick={() => setIsLegalModalOpen(true)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
           x="0px" y="0px" viewBox="0 0 1025 1025">
           <g>
             <path d={SVG_DATA_HANDSHAKE_PART1} />
@@ -303,7 +303,7 @@ function App() {
           </g>
         </svg>
 
-        <svg className={isDarkMode ? "w-6 h-6 invert" : "w-6 h-6 invert0"} onClick={() => window.location.href = "mailto:alwaysfreewordgames@gmail.com"} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+        <svg className={isDarkMode ? "w-6 h-6 ml-1 invert" : "w-6 h-6 ml-1 invert0"} onClick={() => window.location.href = "mailto:alwaysfreewordgames@gmail.com?Subject=Wordlers%20feedback"} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
           x="0px" y="0px" viewBox="0 0 1125 1125">
           <g>
             <path d={SVG_DATA_TELEPHONE_PART1} />
@@ -314,7 +314,7 @@ function App() {
         </svg>
 
         <TrendingUpIcon
-          className="h-7 w-7 ml-2 mr-3 cursor-pointer dark:stroke-white"
+          className="h-7 w-7 ml-3 cursor-pointer dark:stroke-white"
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
