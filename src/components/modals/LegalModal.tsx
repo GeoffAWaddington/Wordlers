@@ -28,7 +28,7 @@ export const LegalModal = ({ isOpen, handleClose }: Props) => {
       </p>      <p className="text-sm text-gray-500 dark:text-gray-300">
         It is GDPR, CCPA, ePrivacy, PECR compliant
       </p>
-      <p>
+      <p className="text-sm text-gray-500 dark:text-gray-300">
         ----------------------------------------------
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-300">

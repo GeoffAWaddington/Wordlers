@@ -47,6 +47,7 @@ function App() {
 
   const [currentGuess, setCurrentGuess] = useState('')
   const [isGameWon, setIsGameWon] = useState(false)
+  const [successAlert, setSuccessAlert] = useState('')
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(localStorage.getItem('showInfo') !== null ? (localStorage.getItem('showInfo') === 'true' ? true : false) : true)
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false)
   const [isNotEnoughLetters, setIsNotEnoughLetters] = useState(false)
@@ -68,9 +69,8 @@ function App() {
         ? true
         : false
   )
-  const [successAlert, setSuccessAlert] = useState('')
-  const [guesses, setGuesses] = useState<string[]>(() => {
 
+  const [guesses, setGuesses] = useState<string[]>(() => {
     const loaded = loadGameStateFromLocalStorage()
     if (loaded?.solution !== solution) {
       return []
@@ -243,14 +243,14 @@ function App() {
 
         {isDarkMode === true ?
           <MoonIcon
-            className="h-6 w-6 ml-1 cursor-pointer dark:stroke-white"
+            className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
             onClick={() => handleDarkMode(!isDarkMode)}
           />
 
           :
 
           <SunIcon
-            className="h-6 w-6 ml-1 cursor-pointer dark:stroke-white"
+            className="h-6 w-6 ml-2 cursor-pointer dark:stroke-white"
             onClick={() => handleDarkMode(!isDarkMode)}
           />
         }
@@ -260,7 +260,7 @@ function App() {
           onClick={() => setIsInfoModalOpen(true)}
         />
 
-        <h1 className="text-lg font-bold grow ml-6 mr-0 dark:text-white">{GAME_TITLE}</h1>
+        <h1 className="text-lg font-bold grow ml-4 dark:text-white">{GAME_TITLE}</h1>
 
 
 
