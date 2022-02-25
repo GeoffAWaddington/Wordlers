@@ -12,10 +12,10 @@ type Props = {
   index?: number
 }
 
-export const Cell = ({ letter, status, onDeleteLetter, index}: Props) => {
+export const Cell = ({ letter, status, onDeleteLetter, index }: Props) => {
 
-   const classes = classnames(
-    'w-14 h-14 border-solid border-2 flex items-center justify-center mx-0.5 text-black text-xl rounded dark:text-white',
+  const classes = classnames(
+    'w-12 h-12 border-solid border-2 flex items-center justify-center mx-0.5 text-black text-xl rounded dark:text-white',
     {
       'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600':
         !status,
@@ -30,11 +30,11 @@ export const Cell = ({ letter, status, onDeleteLetter, index}: Props) => {
   )
 
   const onClick = () => {
-    if(onDeleteLetter !== undefined && index !== undefined)
+    if (onDeleteLetter !== undefined && index !== undefined)
       onDeleteLetter(index);
   }
 
-  return <motion.li 
+  return <motion.li
     className={classes}
     onTap={onClick}
     whileHover={{ scale: 1.03 }}
