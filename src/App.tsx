@@ -74,6 +74,7 @@ function App() {
   const [isGameLoading, setIsGameLoading] = useState(false)
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
+  const [isGameLostAlertVisible, setIsGameLostAlertVisible] = useState(false)
   const [isEasyModeChanging, setIsEasyModeChanging] = useState(false)
   const [isEasyMode, setIsEasyMode] = useState(
     localStorage.getItem('isEasyMode')
@@ -102,6 +103,11 @@ function App() {
     }
     if (loaded.guesses.length === 6 && !gameWasWon) {
       setIsGameLost(true)
+
+      setIsGameLostAlertVisible(true)
+      setTimeout(() => {
+        setIsGameLostAlertVisible(false)
+      }, ALERT_TIME_MS)
     }
     return loaded.guesses
   })
@@ -143,7 +149,7 @@ function App() {
 
     if (isGameWon) {
       setSuccessAlert(
-        WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
+        WIN_MESSAGES[guesses.length - 1]
       )
       setTimeout(() => {
         setSuccessAlert('')
@@ -231,13 +237,17 @@ function App() {
       if (guesses.length === 5) {
         setStats(addStatsForCompletedGame(stats, guesses.length + 1))
         setIsGameLost(true)
+        setIsGameLostAlertVisible(true)
+        setTimeout(() => {
+          setIsGameLostAlertVisible(false)
+        }, ALERT_TIME_MS)
       }
     }
   }
 
   return (
     <div className="py-3 max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div className="flex w-80 mx-auto items-center">
+      <div className="flex mt-1 w-80 mx-auto items-center">
 
         {isEasyMode === true ?
           <svg className={isDarkMode ? "w-6 h-8 mb-1 invert" : "w-6 h-8 mb-1 invert0"} onClick={() => handleIsEasyMode(!isEasyMode)} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -319,29 +329,6 @@ function App() {
         />
       </div>
 
-      <Alert
-        message={NOT_A_VALID_GUESS_MESSAGE}
-        isOpen={isHardModeGuessFail} />
-      <Alert
-        message={NOT_ENOUGH_LETTERS_MESSAGE}
-        isOpen={isNotEnoughLetters} />
-      <Alert
-        message={WORD_NOT_FOUND_MESSAGE}
-        isOpen={isWordNotFoundAlertOpen}
-      />
-      <Alert
-        message={isEasyMode ? EASY_MODE_MESSAGE : HARD_MODE_MESSAGE}
-        isOpen={isEasyModeChanging}
-      />
-      <Alert
-        message={CORRECT_WORD_MESSAGE(solution)}
-        isOpen={isGameLost} />
-      <Alert
-        message={successAlert}
-        isOpen={successAlert !== ''}
-        variant="success"
-      />
-
       <Grid
         guesses={guesses}
         currentGuess={currentGuess}
@@ -374,7 +361,28 @@ function App() {
         }}
       />
 
-
+      <Alert
+        message={NOT_A_VALID_GUESS_MESSAGE}
+        isOpen={isHardModeGuessFail} />
+      <Alert
+        message={NOT_ENOUGH_LETTERS_MESSAGE}
+        isOpen={isNotEnoughLetters} />
+      <Alert
+        message={WORD_NOT_FOUND_MESSAGE}
+        isOpen={isWordNotFoundAlertOpen}
+      />
+      <Alert
+        message={isEasyMode ? EASY_MODE_MESSAGE : HARD_MODE_MESSAGE}
+        isOpen={isEasyModeChanging}
+      />
+      <Alert
+        message={CORRECT_WORD_MESSAGE(solution)}
+        isOpen={isGameLostAlertVisible} />
+      <Alert
+        message={successAlert}
+        isOpen={successAlert !== ''}
+        variant="success"
+      />
     </div>
   )
 }
