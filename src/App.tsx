@@ -107,7 +107,7 @@ function App() {
       setIsGameLostAlertVisible(true)
       setTimeout(() => {
         setIsGameLostAlertVisible(false)
-      }, ALERT_TIME_MS)
+      }, ALERT_TIME_MS * 2)
     }
     return loaded.guesses
   })
