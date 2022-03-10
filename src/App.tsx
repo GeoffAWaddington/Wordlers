@@ -107,7 +107,7 @@ function App() {
       setIsGameLostAlertVisible(true)
       setTimeout(() => {
         setIsGameLostAlertVisible(false)
-      }, ALERT_TIME_MS * 2)
+      }, ALERT_TIME_MS * 3)
     }
     return loaded.guesses
   })
@@ -240,7 +240,7 @@ function App() {
         setIsGameLostAlertVisible(true)
         setTimeout(() => {
           setIsGameLostAlertVisible(false)
-        }, ALERT_TIME_MS)
+        }, ALERT_TIME_MS * 2)
       }
     }
   }
