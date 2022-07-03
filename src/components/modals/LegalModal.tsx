@@ -21,17 +21,6 @@ export const LegalModal = ({ isOpen, handleClose }: Props) => {
         ----------------------------------------------
       </p>
       <p className="text-sm text-gray-500 dark:text-gray-300">
-        Geek Deets:
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300">
-        We use Fathom to get our very limited information
-      </p>      <p className="text-sm text-gray-500 dark:text-gray-300">
-        It is GDPR, CCPA, ePrivacy, PECR compliant
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300">
-        ----------------------------------------------
-      </p>
-      <p className="text-sm text-gray-500 dark:text-gray-300">
         Please enjoy your time here !
       </p>
     </BaseModal>
